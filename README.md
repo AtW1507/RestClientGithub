@@ -115,4 +115,4 @@ Domyślny adres GitHub API:
 https://api.github.com
 
 📄 Przykładowe wywołanie
-GET http://localhost:8080/users/octocat/repositories
+GET http://localhost:8080/users/atw1507/repositories
