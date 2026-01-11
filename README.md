@@ -4,7 +4,7 @@ Aplikacja Spring Boot pełniąca rolę prostego proxy do GitHub REST API, umożl
 
 Projekt został przygotowany jako zadanie rekrutacyjne i spełnia wszystkie przekazane wymagania oraz acceptance criteria.
 
-Zakres funkcjonalny
+🎯 Zakres funkcjonalny
 Endpoint
 GET /users/{username}/repositories
 
@@ -13,15 +13,15 @@ Zwraca listę repozytoriów użytkownika GitHub, które nie są forkami.
 
 Dla każdego repozytorium zwracane są:
 
- repositoryName - nazwa repozytorium
+repositoryName - nazwa repozytorium
 
- ownerLogin - login właściciela
+ownerLogin - login właściciela
 
 branches:
 
- name - nazwa brancha
+name - nazwa brancha
 
- lastCommit - SHA ostatniego commita
+lastCommit - SHA ostatniego commita
 
 Obsługa błędów
 
@@ -29,98 +29,90 @@ Dla nieistniejącego użytkownika GitHub zwracana jest odpowiedź:
 
 HTTP 404
 
- {
-    "status": 404,
-    "message": "User not found: {username}"
- }
+{
+  "status": 404,
+  "message": "User not found: {username}"
+}
 
-Architektura
+🧱 Architektura
 
 Aplikacja posiada prostą architekturę typu proxy:
 
- Controller → Service → Client → GitHub REST API
+Controller → Service → Client → GitHub REST API
 
 
 Założenia architektoniczne:
 
- brak podziału na DTO / modele domenowe
+brak podziału na DTO / modele domenowe
 
- minimalna liczba modeli (record)
+minimalna liczba modeli (record)
 
- wszystkie klasy w jednym pakiecie
+wszystkie klasy w jednym pakiecie
 
- brak nadmiarowych warstw i konfiguracji
+brak nadmiarowych warstw i konfiguracji
 
-Stack technologiczny
+🛠️ Stack technologiczny
 
- Java 25
+Java 25
 
- Spring Boot 4.0.1
+Spring Boot 4.0.1
 
- Gradle (Kotlin DSL)
+Gradle (Kotlin DSL)
 
- Spring RestClient
+Spring RestClient
 
- JUnit 5
+JUnit 5
 
- WireMock (testy integracyjne)
+WireMock (testy integracyjne)
 
-Świadome ograniczenia
+🚫 Świadome ograniczenia
 
- Zgodnie z treścią zadania projekt celowo nie zawiera:
+Zgodnie z treścią zadania projekt celowo nie zawiera:
 
-  WebFlux
+WebFlux
 
-  paginacji
+paginacji
 
-  security
+security
 
-  cache
+cache
 
-  mechanizmów resilience (retry, circuit breaker)
+mechanizmów resilience (retry, circuit breaker)
 
-  architektury DDD / Hexagonalnej
+architektury DDD / Hexagonalnej
 
-  podziału projektu na moduły
+podziału projektu na moduły
 
-Testy
+🧪 Testy
 
 Projekt zawiera wyłącznie testy integracyjne.
 
 Charakterystyka:
 
- brak mocków
+brak mocków
 
- emulacja GitHub API przy użyciu WireMock
+emulacja GitHub API przy użyciu WireMock
 
- testowane kluczowe przypadki biznesowe:
+testowane kluczowe przypadki biznesowe:
 
- zwracanie repozytoriów bez forków
+zwracanie repozytoriów bez forków
 
- obsługa nieistniejącego użytkownika
+obsługa nieistniejącego użytkownika
 
-Uruchomienie aplikacji
+▶️ Uruchomienie aplikacji
+Wymagania
 
-Wymagania:
+Java 25
 
- Java 25
-
- Gradle
+Gradle
 
 Uruchomienie
- ./gradlew bootRun
+./gradlew bootRun
 
 
 Domyślny adres GitHub API:
 
 https://api.github.com
 
-Przykładowe wywołanie:
+📄 Przykładowe wywołanie
 GET http://localhost:8080/users/octocat/repositories
-
-Uwagi końcowe
-
-Projekt został przygotowany zgodnie z zasadą:
-
- „Nie robić nic poza rzeczami wymienionymi w treści zadania.”
-
